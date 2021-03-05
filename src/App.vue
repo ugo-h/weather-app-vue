@@ -1,15 +1,33 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div className="container">
+    <Weather v-bind:location="location" />
+    <LocationsSidebar v-on:setLocation="setLocation" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Weather from './components/Weather';
+import LocationsSidebar from './components/LocationsSidebar';
+import { getLocation } from './lib/api/Geolocation/Geolocation';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Weather,
+    LocationsSidebar
+  },
+  data() {
+    return {
+      location: null
+    }
+  },
+  mounted() {
+    getLocation().then(data => this.location = data)
+  },
+  methods: {
+    setLocation({ location, coordinates}) {
+      console.log(coordinates)
+      this.location = { city: location, coordinates }
+    }
   }
 }
 </script>
@@ -21,6 +39,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.container{
+  width: 100%;
+  max-width: 600px;
+  display: flex;
 }
 </style>
