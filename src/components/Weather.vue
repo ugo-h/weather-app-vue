@@ -1,14 +1,14 @@
 <template>
     <v-card class="weather-block" v-if="location && weather">
-        <p className="weather__location card__text">{{ location.city }}</p>
-        <div className="weather__temperature card__text">{{ weather.temp.c }} °c</div>
-        <div className="group weather__description">
-            <img className="weather__icon" v-bind:src="weather.icon" v-bind:alt="weather.summary" />
-            <p className="weather__summary card__text">{{ weather.summary }}</p>
+        <p class="weather__location card__text">{{ location.city }}</p>
+        <div class="weather__temperature card__text">{{ weather.temp.c }} °c</div>
+        <div class="group weather__description">
+            <img class="weather__icon" v-bind:src="weather.icon" v-bind:alt="weather.summary" />
+            <p class="weather__summary card__text">{{ weather.summary }}</p>
         </div>
     </v-card>
-    <div v-else className="weather-block">
-        <div className="weather__spinner"><v-spinner /></div>
+    <div v-else class="weather-block">
+        <div class="weather__spinner"><v-spinner /></div>
     </div>
 </template>
 

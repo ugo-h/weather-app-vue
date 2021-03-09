@@ -1,5 +1,5 @@
 <template>
-  <div className="container">
+  <div class="container">
     <Weather v-bind:location="location" />
     <LocationsSidebar v-on:setLocation="setLocation" />
   </div>

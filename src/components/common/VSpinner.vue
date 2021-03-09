@@ -1,5 +1,5 @@
 <template>
-    <div className="Spinner"></div>
+    <div class="Spinner"></div>
 </template>
 
 <script>
