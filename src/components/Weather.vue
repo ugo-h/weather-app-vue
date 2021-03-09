@@ -1,11 +1,14 @@
 <template>
-    <div className="Weather-block" v-if="location && weather">
+    <v-card class="weather-block" v-if="location && weather">
         <p className="weather__location card__text">{{ location.city }}</p>
         <div className="weather__temperature card__text">{{ weather.temp.c }} °c</div>
         <div className="group weather__description">
             <img className="weather__icon" v-bind:src="weather.icon" v-bind:alt="weather.summary" />
             <p className="weather__summary card__text">{{ weather.summary }}</p>
         </div>
+    </v-card>
+    <div v-else className="weather-block">
+        <div className="weather__spinner"><v-spinner /></div>
     </div>
 </template>
 
@@ -22,7 +25,7 @@ export default {
     watch: {
         location: function() {
             if (this.location) {
-                getWeather(this.location.coordinates, 'en')
+                getWeather(this.location.coordinates, { language: 'en' })
                     .then(data => this.weather = data);
             }
         }
@@ -31,25 +34,19 @@ export default {
 </script>
 
 <style scoped>
-.Weather-block{
-    width: 70%;
-    max-height: 300px;
+.weather-block{
+    width: 60%;
+    position: relative;
+    height: 300px;
+    margin-right: 2rem;
     margin-top: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "location date"
-                         "temperature time"
-                         "temperature items"
-                         "summary items";
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .weather__description{
     display: flex;
-    grid-column: 1;
-    grid-row: 4;
-    grid-area: summary;
     font-size: 1.4rem;
     color: #666;
     justify-content: center;
@@ -57,34 +54,16 @@ export default {
 .weather__temperature{
     color: #666;
     font-size: 5rem;
-    grid-area: temperature;
 }
-
-@media(max-width: 900px){
-    .weather{
-        margin: 0;
-        width: 90%;
-        max-width: 500px;
-        justify-items: center;
-        height: auto;
-        grid-template-columns: 1fr 2fr;
-        grid-template-rows: auto;
-        grid-template-areas: "location date"
-                            "time time"
-                            "temperature temperature"
-                            "summary summary"
-                            "items items"
-    }
-    .main-weather{
-        flex-flow: column;
-    }
-    .weather__location{
-        font-size: 0.8rem;
-    }
-    .weather__temperature{
-        text-align: center;
-        margin-top: 1rem;
-    }
-
+.weather__spinner{
+    top: 50%;
+    left: 50%;
+}
+@media (max-width: 700px) {
+  .weather-block{
+    margin-right: 0;
+    width: 90%;
+    margin-bottom: 3rem;
+  }
 }
 </style>

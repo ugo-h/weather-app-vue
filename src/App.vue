@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     setLocation({ location, coordinates}) {
-      console.log(coordinates)
       this.location = { city: location, coordinates }
     }
   }
@@ -36,7 +35,11 @@ export default {
 *{
   box-sizing: border-box;
 }
+body{
+  margin: 0;
+}
 #app {
+  margin: 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -45,10 +48,19 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
+  background:#faf9f9;
+  min-height: 100vh;
 }
 .container{
+  margin-top: 3rem;
   width: 100%;
-  max-width: 600px;
+  max-width: 650px;
   display: flex;
+  align-items: center;
+}
+@media (max-width: 700px) {
+  .container{
+    flex-direction: column;
+  }
 }
 </style>

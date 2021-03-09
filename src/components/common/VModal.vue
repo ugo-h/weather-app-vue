@@ -1,6 +1,6 @@
 <template>
-    <div className="backdrop" v-show="showModal" v-on:click="$emit('close')"></div>
-    <div className="modal" v-show="showModal">
+    <div class="backdrop" v-show="showModal" v-on:click="$emit('close')"></div>
+    <div class="modal" v-show="showModal">
         <slot></slot>
     </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div className="card">
+    <div class="card">
         <slot></slot>
     </div>
 </template>
@@ -12,8 +12,9 @@ export default {
 
 <style>
     .card{
+        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
         padding: 1rem;
-        background: white;
+        background: #faf9f9;
         border-radius: 20px;
     }
 </style>
