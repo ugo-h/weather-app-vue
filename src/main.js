@@ -3,6 +3,7 @@ import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import App from './App.vue'
 
+const vueApp = createApp(App)
 const requireComponent = require.context(
   // Относительный путь до каталога компонентов
   './components/common',
@@ -28,7 +29,6 @@ requireComponent.keys().forEach(fileName => {
   )
 
 
-  const vueApp = createApp(App)
   // Глобальная регистрация компонента
   vueApp.component(
     componentName,
@@ -36,6 +36,8 @@ requireComponent.keys().forEach(fileName => {
     // если компонент экспортирован с помощью `export default`,
     // иначе будет использован корневой уровень модуля.
     componentConfig.default || componentConfig
-  )
+    )
+  })
+  
   vueApp.mount('#app')
-})
+  

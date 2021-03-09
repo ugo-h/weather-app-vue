@@ -1,9 +1,13 @@
 <template>
-    <div className="SideBar">
+    <div className="Sidebar">
         <h3>Choose location</h3>
-        <ul v-if="savedLocations.length > 0">
-            <li v-for:="item in savedLocations">
-                <LocationItem v-bind:item="item" v-on:setLocation="() => setLocation(item)"/>
+        <ul v-if="savedLocations.length > 0" className="Sidebar__locations">
+            <li v-for:="(item, index) in savedLocations">
+                <LocationItem 
+                    v-bind:item="item"
+                    v-on:setLocation="() => setLocation(item)"
+                    v-on:removeLocation="() => removeLocation(index)"
+                />
             </li>
         </ul>
         <h3 v-else className="Placeholder">No locations yet...</h3>
@@ -18,7 +22,7 @@
         <h2>Choose location:</h2>
         <ul>
             <li v-for:="item in locationList" v-on:click="() => pickLocation(item)">
-                {{ item.location }}
+                {{ item.formatted }}
             </li>
         </ul>
         </v-card>
@@ -57,14 +61,24 @@ export default {
         },
         setLocation(item) {
             this.$emit('setLocation', item)
+        },
+        removeLocation(index) {
+            this.savedLocations.splice(index, 1);
         }
     }
 }
 </script>
 
-<style>
-    .SideBar{
+<style scoped>
+    .Sidebar{
         width: 30%;
+        display: flex;
+        flex-direction: column;
+        
+    }
+    ul{
+        padding: 0;
+        list-style: none
     }
     .Placeholder{
         opacity: 0.5;

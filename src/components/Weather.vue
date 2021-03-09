@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .Weather-block{
     width: 70%;
     max-height: 300px;
@@ -77,10 +77,6 @@ export default {
     }
     .main-weather{
         flex-flow: column;
-    }
-    .weather__date{
-        font-size: 0.8rem;
-        min-width: 100px;
     }
     .weather__location{
         font-size: 0.8rem;
