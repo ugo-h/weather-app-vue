@@ -1,41 +1,22 @@
 <template>
-  <div class="container">
-    <Weather v-bind:location="location" />
-    <LocationsSidebar v-on:setLocation="setLocation" />
-  </div>
+  <Weather />
 </template>
 
 <script>
-import Weather from './components/Weather';
-import LocationsSidebar from './components/LocationsSidebar';
-import { getLocation } from './lib/api/Geolocation/Geolocation';
+import Weather from "./components/Weather/Weather";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Weather,
-    LocationsSidebar
   },
-  data() {
-    return {
-      location: null
-    }
-  },
-  mounted() {
-    getLocation().then(data => this.location = data)
-  },
-  methods: {
-    setLocation({ location, coordinates}) {
-      this.location = { city: location, coordinates }
-    }
-  }
-}
+};
 </script>
 
 <style>
-*{
+* {
   box-sizing: border-box;
 }
-body{
+body {
   margin: 0;
 }
 #app {
@@ -48,19 +29,7 @@ body{
   display: flex;
   align-items: center;
   flex-direction: column;
-  background:#faf9f9;
+  background: #faf9f9;
   min-height: 100vh;
-}
-.container{
-  margin-top: 3rem;
-  width: 100%;
-  max-width: 650px;
-  display: flex;
-  align-items: center;
-}
-@media (max-width: 700px) {
-  .container{
-    flex-direction: column;
-  }
 }
 </style>

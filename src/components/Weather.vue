@@ -1,4 +1,5 @@
 <template>
+    <div>
     <v-card class="weather-block" v-if="location && weather">
         <p class="weather__location card__text">{{ location.city }}</p>
         <div class="weather__temperature card__text">{{ weather.temp.c }} °c</div>
@@ -9,6 +10,7 @@
     </v-card>
     <div v-else class="weather-block">
         <div class="weather__spinner"><v-spinner /></div>
+    </div>
     </div>
 </template>
 
@@ -25,6 +27,7 @@ export default {
     watch: {
         location: function() {
             if (this.location) {
+                this.weather = null;
                 getWeather(this.location.coordinates, { language: 'en' })
                     .then(data => this.weather = data);
             }

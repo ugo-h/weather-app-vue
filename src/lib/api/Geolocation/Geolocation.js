@@ -7,12 +7,12 @@ const url = 'https://ipinfo.io';
 const token = geolocationApiKey;
 
 
-export const getLocation = async() => {
+export const getLocation = async () => {
     const data = await fetchGetJson(url, { token: token });
     const filtered = (({ city, country, loc, timezone }) => {
         const coordinates = new Coordinates(loc);
-        return { 
-            city,
+        return {
+            location: city + ', ' + country,
             country,
             coordinates,
             timezone
