@@ -37,7 +37,8 @@ export default {
     const location = await getStringFromCoordinates(locationData.coordinates, {
       language: "en",
     });
-    this.weatherItems = saved.filter((item) => location !== item.location);
+    if (saved)
+      this.weatherItems = saved.filter((item) => location !== item.location);
     this.getWeatherByLocation({ ...locationData, location });
   },
   methods: {
